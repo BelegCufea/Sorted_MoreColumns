@@ -1,0 +1,22 @@
+## Interface: 100002
+## Title: |A:::|a|TZ|t  - More Columns Plugin
+## Notes: Adds more columns to Sorted Bags
+## Version: 1.0.0
+## Author: Cufea
+## SavedVariables: Sorted_MoreColumnsDB
+## Dependencies: Sorted
+## OptionalDependencies: TradeSkillMaster
+## DefaultState: enabled
+
+Libs\LibStub\LibStub.lua
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+
+Core.lua
+Config.lua
+Plugins\EquipmentSets.lua
+Plugins\Total.lua
+Plugins\TSM.lua
