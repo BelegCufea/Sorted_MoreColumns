@@ -1,7 +1,7 @@
 ## Interface: 100002
 ## Title: |A:::|a|TZ|t  - More Columns Plugin
 ## Notes: Adds more columns to Sorted Bags
-## Version: 1.0.1
+## Version: 1.0.2
 ## Author: Cufea
 ## SavedVariables: Sorted_MoreColumnsDB
 ## Dependencies: Sorted

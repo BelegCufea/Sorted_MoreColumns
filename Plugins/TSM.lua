@@ -6,8 +6,8 @@ local Sorted_Name = "Auction"
 local Sorted_Sort = "TSM"
 
 local TSM = {}
-Addon.mc_tsm = TSM
-local TSM_API = _G.mc_tsm_API
+Addon.TSM = TSM
+local TSM_API = _G.TSM_API
 
 local CONST = {}
 
@@ -33,7 +33,7 @@ end
 
 function TSM.GetAvailablePriceSources()
 	if not TSM.IsTSMLoaded() then
-		return {[Addon.db.profile.mc_tsm.priceSource] = "TSM not loaded!"}
+		return {[Addon.db.profile.TSM.priceSource] = "TSM not loaded!"}
 	end
 
 	local keys = {}
@@ -107,12 +107,18 @@ local Sort = function(asc, data1, data2)
 end
 
 local PreSort = function(itemData)
-    local PriceSource = Addon.db.profile.mc_tsm.priceSource
-    itemData.mc_tsm = nil
-    if TSM.IsTSMLoaded() and TSM_API.GetCustomPriceValue then
-        local tsmItemLink = TSM_API.ToItemString(itemData.link)
-        if tsmItemLink then
-            itemData.mc_tsm = TSM_API.GetCustomPriceValue(PriceSource, tsmItemLink)
+    if Sorted.IsPlayingCharacterSelected() and not itemData.isGuild then
+        if itemData.link then
+            local PriceSource = Addon.db.profile.TSM.priceSource
+            itemData.mc_tsm = nil
+            if TSM.IsTSMLoaded() and TSM_API.GetCustomPriceValue then
+                local tsmItemLink = TSM_API.ToItemString(itemData.link)
+                if tsmItemLink then
+                    itemData.mc_tsm = TSM_API.GetCustomPriceValue(PriceSource, tsmItemLink)
+                end
+            end
+        else
+            itemData.mc_tsm = nil
         end
     end
 end

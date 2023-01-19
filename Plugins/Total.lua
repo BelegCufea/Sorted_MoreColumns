@@ -50,7 +50,13 @@ local Sort = function(asc, data1, data2)
 end
 
 local PreSort = function(itemData)
-    itemData.mc_totalCount = _G.GetItemCount(itemData.itemID, true, nil, true)
+    if Sorted.IsPlayingCharacterSelected() and not itemData.isGuild then
+        if itemData.link then
+            itemData.mc_totalCount = _G.GetItemCount(itemData.itemID, true, nil, true)
+        else
+            itemData.mc_totalCount = nil
+        end
+    end
 end
 
 Sorted:AddItemColumn(Sorted_Column, Sorted_Name, 48, CreateElement, UpdateElement)
