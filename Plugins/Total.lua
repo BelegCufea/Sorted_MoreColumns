@@ -14,15 +14,15 @@ local CreateElement = function(f)
 end
 
 local UpdateElement = function(self, data)
-    if not data.totalCount or data.totalCount <= 1 then
+    if not data.mc_totalCount or data.mc_totalCount <= 1 then
         self.totalString:SetText("")
     else
-        self.totalString:SetText("(" .. data.totalCount .. ")")
+        self.totalString:SetText("(" .. data.mc_totalCount .. ")")
         if data.filtered then
             self.totalString:SetAlpha(0.5)
             self.totalString:SetTextColor(Sorted.Color.GREY:GetRGB())
         else
-            if data.totalCount > data.combinedCount then
+            if data.mc_totalCount > data.combinedCount then
                 self.totalString:SetAlpha(0.8)
                 self.totalString:SetTextColor(Sorted.Color.CYAN:GetRGB())
             else
@@ -34,23 +34,23 @@ local UpdateElement = function(self, data)
 end
 
 local Sort = function(asc, data1, data2)
-    if data1.totalCount == data2.totalCount then
+    if data1.mc_totalCount == data2.mc_totalCount then
         return Sorted.DefaultItemSort(data1, data2)
     end
-    if not data1.totalCount then
+    if not data1.mc_totalCount then
         return asc
-    elseif not data2.totalCount then
+    elseif not data2.mc_totalCount then
         return not asc
     end
     if asc then
-        return data1.totalCount < data2.totalCount
+        return data1.mc_totalCount < data2.mc_totalCount
     else
-        return data1.totalCount > data2.totalCount
+        return data1.mc_totalCount > data2.mc_totalCount
     end
 end
 
 local PreSort = function(itemData)
-    itemData.totalCount = _G.GetItemCount(itemData.itemID, true, nil, true)
+    itemData.mc_totalCount = _G.GetItemCount(itemData.itemID, true, nil, true)
 end
 
 Sorted:AddItemColumn(Sorted_Column, Sorted_Name, 48, CreateElement, UpdateElement)

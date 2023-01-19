@@ -11,7 +11,7 @@ local CreateElement = function(f)
     f.equipmentsetsString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())    
 end
 local UpdateElement = function(self, data)
-    if not data.equipmentsets then
+    if not data.mc_equipmentSetsthen
         self.equipmentsetsString:SetText("")
     else
         self.equipmentsetsString:SetText(data.equipmentsets)
@@ -26,24 +26,24 @@ local UpdateElement = function(self, data)
 end
 
 local Sort = function(asc, data1, data2)
-    if data1.equipmentsets == data2.equipmentsets then
+    if data1.mc_equipmentSets== data2.mc_equipmentSetsthen
         return Sorted.DefaultItemSort(data1, data2)
     end
-    if not data1.equipmentsets then
+    if not data1.mc_equipmentSetsthen
         return asc
-    elseif not data2.equipmentsets then
+    elseif not data2.mc_equipmentSetsthen
         return not asc
     end
     if asc then
-        return data1.equipmentsets < data2.equipmentsets
+        return data1.mc_equipmentSets< data2.equipmentsets
     else
-        return data1.equipmentsets > data2.equipmentsets
+        return data1.mc_equipmentSets> data2.equipmentsets
     end
 end
 
 local PreSort = function(itemData)
     local ShowText = Addon.db.profile.EquipmentSets.showText
-    itemData.equipmentsets = nil
+    itemData.mc_equipmentSets= nil
     local setIndex
     for setIndex=1, C_EquipmentSet.GetNumEquipmentSets() do
         local equipmentSetIDs = C_EquipmentSet.GetEquipmentSetIDs()
@@ -80,16 +80,16 @@ local PreSort = function(itemData)
 
                     if isFound then
                         if ShowText then
-                            if itemData.equipmentsets then
-                                itemData.equipmentsets = itemData.equipmentsets .. ", " .. name
+                            if itemData.mc_equipmentSetsthen
+                                itemData.mc_equipmentSets= itemData.mc_equipmentSets.. ", " .. name
                             else
-                                itemData.equipmentsets = name
+                                itemData.mc_equipmentSets= name
                             end
                         else
-                            if itemData.equipmentsets then
-                                itemData.equipmentsets = itemData.equipmentsets .. " |T" .. icon .. ":16|t"
+                            if itemData.mc_equipmentSetsthen
+                                itemData.mc_equipmentSets= itemData.mc_equipmentSets.. " |T" .. icon .. ":16|t"
                             else
-                                itemData.equipmentsets = "|T" .. icon .. ":16|t"
+                                itemData.mc_equipmentSets= "|T" .. icon .. ":16|t"
                             end
                         end
 

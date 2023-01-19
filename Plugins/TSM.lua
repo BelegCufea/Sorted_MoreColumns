@@ -6,8 +6,8 @@ local Sorted_Name = "Auction"
 local Sorted_Sort = "TSM"
 
 local TSM = {}
-Addon.TSM = TSM
-local TSM_API = _G.TSM_API
+Addon.mc_tsm = TSM
+local TSM_API = _G.mc_tsm_API
 
 local CONST = {}
 
@@ -33,7 +33,7 @@ end
 
 function TSM.GetAvailablePriceSources()
 	if not TSM.IsTSMLoaded() then
-		return {[Addon.db.profile.TSM.priceSource] = "TSM not loaded!"}
+		return {[Addon.db.profile.mc_tsm.priceSource] = "TSM not loaded!"}
 	end
 
 	local keys = {}
@@ -70,16 +70,16 @@ local CreateElement = function(f)
     f.valueString:SetJustifyH("RIGHT")
 end
 local UpdateElement = function(self, data)
-    if data.tsm and data.tsm > 0 then
-        self.valueIcon:SetTexture(Sorted.GetValueIcon(data.tsm * data.combinedCount))
-        self.valueString:SetText(Sorted.FormatValueStringNoIcon(data.tsm * data.combinedCount))
+    if data.mc_tsm and data.mc_tsm > 0 then
+        self.valueIcon:SetTexture(Sorted.GetValueIcon(data.mc_tsm * data.combinedCount))
+        self.valueString:SetText(Sorted.FormatValueStringNoIcon(data.mc_tsm * data.combinedCount))
 
         if data.filtered then
             self.valueString:SetTextColor(Sorted.Color.GREY:GetRGB())
             self.valueIcon:SetDesaturated(true)
             self.valueIcon:SetVertexColor(Sorted.Color.LIGHT_GREY:GetRGB())
         else
-            local color = Sorted.GetValueColor(data.tsm * data.combinedCount)
+            local color = Sorted.GetValueColor(data.mc_tsm * data.combinedCount)
             self.valueString:SetTextColor(color:GetRGB())
             self.valueIcon:SetDesaturated(false)
             self.valueIcon:SetVertexColor(Sorted.Color.WHITE:GetRGB())
@@ -91,28 +91,28 @@ local UpdateElement = function(self, data)
 end
 
 local Sort = function(asc, data1, data2)
-    if data1.tsm == data2.tsm then
+    if data1.mc_tsm == data2.mc_tsm then
         return Sorted.DefaultItemSort(data1, data2)
     end
-    if not data1.tsm then
+    if not data1.mc_tsm then
         return asc
-    elseif not data2.tsm then
+    elseif not data2.mc_tsm then
         return not asc
     end
     if asc then
-        return data1.tsm * data1.combinedCount < data2.tsm * data2.combinedCount
+        return data1.mc_tsm * data1.combinedCount < data2.mc_tsm * data2.combinedCount
     else
-        return data1.tsm * data1.combinedCount > data2.tsm * data2.combinedCount
+        return data1.mc_tsm * data1.combinedCount > data2.mc_tsm * data2.combinedCount
     end
 end
 
 local PreSort = function(itemData)
-    local PriceSource = Addon.db.profile.TSM.priceSource
-    itemData.tsm = nil
+    local PriceSource = Addon.db.profile.mc_tsm.priceSource
+    itemData.mc_tsm = nil
     if TSM.IsTSMLoaded() and TSM_API.GetCustomPriceValue then
         local tsmItemLink = TSM_API.ToItemString(itemData.link)
         if tsmItemLink then
-            itemData.tsm = TSM_API.GetCustomPriceValue(PriceSource, tsmItemLink)
+            itemData.mc_tsm = TSM_API.GetCustomPriceValue(PriceSource, tsmItemLink)
         end
     end
 end
