@@ -36,6 +36,10 @@
         "REAGENTBANK_CONTAINER",
         "StaticPopupDialogs",
         "StaticPopup_Show",
-        "Add"
+        "Add",
+        "ReloadUI",
+        "ERR_NOT_IN_COMBAT",
+        "LE_PARTY_CATEGORY_HOME",
+        "LE_PARTY_CATEGORY_INSTANCE"
     ]
 }
