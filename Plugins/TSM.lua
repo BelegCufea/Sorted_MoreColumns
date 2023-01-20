@@ -54,10 +54,10 @@ function TSM.GetAvailablePriceSources()
 	sort(keys)
 
 	for _,v in ipairs(keys) do
-		priceSources[v] = CONST.PRICE_SOURCE[v]
+		tsmPriceSources[v] = CONST.PRICE_SOURCE[v]
 	end
 
-	return priceSources
+	return tsmPriceSources
 end
 
 local CreateElement = function(f)
