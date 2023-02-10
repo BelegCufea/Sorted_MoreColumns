@@ -69,24 +69,24 @@ local CreateElement = function(f)
     f.valueString:SetHeight(1)
     f.valueString:SetJustifyH("RIGHT")
 end
-local UpdateElement = function(self, data)
+local UpdateElement = function(f, data)
     if data.mc_tsm and data.mc_tsm > 0 then
-        self.valueIcon:SetTexture(Sorted.GetValueIcon(data.mc_tsm * data.combinedCount))
-        self.valueString:SetText(Sorted.FormatValueStringNoIcon(data.mc_tsm * data.combinedCount))
+        f.valueIcon:SetTexture(Sorted.GetValueIcon(data.mc_tsm * data.combinedCount))
+        f.valueString:SetText(Sorted.FormatValueStringNoIcon(data.mc_tsm * data.combinedCount))
 
         if data.filtered then
-            self.valueString:SetTextColor(Sorted.Color.GREY:GetRGB())
-            self.valueIcon:SetDesaturated(true)
-            self.valueIcon:SetVertexColor(Sorted.Color.LIGHT_GREY:GetRGB())
+            f.valueString:SetTextColor(Sorted.Color.GREY:GetRGB())
+            f.valueIcon:SetDesaturated(true)
+            f.valueIcon:SetVertexColor(Sorted.Color.LIGHT_GREY:GetRGB())
         else
             local color = Sorted.GetValueColor(data.mc_tsm * data.combinedCount)
-            self.valueString:SetTextColor(color:GetRGB())
-            self.valueIcon:SetDesaturated(false)
-            self.valueIcon:SetVertexColor(Sorted.Color.WHITE:GetRGB())
+            f.valueString:SetTextColor(color:GetRGB())
+            f.valueIcon:SetDesaturated(false)
+            f.valueIcon:SetVertexColor(Sorted.Color.WHITE:GetRGB())
         end
     else
-        self.valueString:SetText("")
-        self.valueIcon:SetTexture("")
+        f.valueString:SetText("")
+        f.valueIcon:SetTexture("")
     end
 end
 
@@ -125,4 +125,4 @@ end
 
 Sorted:AddItemColumn(Sorted_Column, Sorted_Name, 48, CreateElement, UpdateElement)
 Sorted:AddSortMethod(Sorted_Column, Sorted_Sort, Sort, false)
-Sorted:AddDataToItem(Sorted_Column, PreSort)
+Sorted:AddDataToItem(nil, PreSort)

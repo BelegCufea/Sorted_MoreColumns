@@ -6,28 +6,39 @@ local Sorted_Sort = "All"
 
 Sorted.Color.CYAN = CreateColor(0,1,1)
 
+local private = {}
+
+private.OnUpate = function(data)
+    if data.link then
+        data.mc_totalCount = _G.GetItemCount(data.itemID, true, nil, true)
+    else
+        data.mc_totalCount = nil
+    end
+end
+
 local CreateElement = function(f)
     f.totalString = f:CreateFontString(nil, "OVERLAY", "SortedFont")
     f.totalString:SetPoint("RIGHT", -2, 0)
-    f.totalString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())    
+    f.totalString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())
     f.totalString:SetAlpha(0.5)
 end
 
-local UpdateElement = function(self, data)
+local UpdateElement = function(f, data)
+    private.OnUpate(data)
     if not data.mc_totalCount or data.mc_totalCount <= 1 then
-        self.totalString:SetText("")
+        f.totalString:SetText("")
     else
-        self.totalString:SetText("(" .. data.mc_totalCount .. ")")
+        f.totalString:SetText("(" .. data.mc_totalCount .. ")")
         if data.filtered then
-            self.totalString:SetAlpha(0.5)
-            self.totalString:SetTextColor(Sorted.Color.GREY:GetRGB())
+            f.totalString:SetAlpha(0.5)
+            f.totalString:SetTextColor(Sorted.Color.GREY:GetRGB())
         else
             if data.mc_totalCount > data.combinedCount then
-                self.totalString:SetAlpha(0.8)
-                self.totalString:SetTextColor(Sorted.Color.CYAN:GetRGB())
+                f.totalString:SetAlpha(0.8)
+                f.totalString:SetTextColor(Sorted.Color.CYAN:GetRGB())
             else
-                self.totalString:SetAlpha(0.5)
-                self.totalString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())
+                f.totalString:SetAlpha(0.5)
+                f.totalString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())
             end
         end
     end
@@ -51,14 +62,10 @@ end
 
 local PreSort = function(itemData)
     if Sorted.IsPlayingCharacterSelected() and not itemData.isGuild then
-        if itemData.link then
-            itemData.mc_totalCount = _G.GetItemCount(itemData.itemID, true, nil, true)
-        else
-            itemData.mc_totalCount = nil
-        end
+        private.OnUpate(itemData)
     end
 end
 
 Sorted:AddItemColumn(Sorted_Column, Sorted_Name, 48, CreateElement, UpdateElement)
 Sorted:AddSortMethod(Sorted_Column, Sorted_Sort, Sort, false)
-Sorted:AddDataToItem(Sorted_Column, PreSort)
+Sorted:AddDataToItem(nil, PreSort)
