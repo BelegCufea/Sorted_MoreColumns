@@ -75,7 +75,7 @@ local CreateElement = function(f)
     f.equipmentsetsString:SetTextColor(Sorted.Color.YELLOWISH_TEXT:GetRGB())
 end
 local UpdateElement = function(f, data)
-    --private.OnUpdate(data)
+    private.OnUpdate(data)
     if not data.mc_equipmentSets then
         f.equipmentsetsString:SetText("")
     else
