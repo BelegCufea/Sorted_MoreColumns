@@ -1,11 +1,11 @@
-## Interface: 100005
+## Interface: 100100
 ## Title: |A:::|a|TZ|t  - More Columns Plugin
 ## Notes: Adds more columns to Sorted Bags
-## Version: 1.0.3
+## Version: 1.0.4
 ## Author: Cufea
 ## SavedVariables: Sorted_MoreColumnsDB
 ## Dependencies: Sorted
-## OptionalDependencies: TradeSkillMaster
+## OptionalDeps: TradeSkillMaster
 ## DefaultState: enabled
 
 Libs\LibStub\LibStub.lua
@@ -20,3 +20,4 @@ Config.lua
 Plugins\EquipmentSets.lua
 Plugins\Total.lua
 Plugins\TSM.lua
+Plugins\Upgrade.lua

@@ -11,6 +11,7 @@ local options = {
 	args = {
 		EquipmentSetsText = {
 			type = "toggle",
+			order = 10,
 			name = "Equipment Sets as text",
 			desc = "Show equipment sets as text instead icon.",
             width = "full",
@@ -21,6 +22,7 @@ local options = {
 		},
 		TSMPriceSource = {
 			type = "select",
+			order = 20,
 			name = "TSM Price Source",
 			desc = "Predefined price sources for item value calculation.",
 			width = "double",
@@ -31,7 +33,20 @@ local options = {
 			set = function(info, value)
 				Addon.db.profile.TSM.priceSource = value
 			end,
-		}
+		},
+		UpgradeLevelNumChars = {
+			type = "range",
+			order = 30,
+			name = "Upgrade level characters",
+			desc = "How many characters from upgrade tier is shown (e.g. for 3 it will return Vet from Veteran).",
+			width = "full",
+			get = function(info)
+				return Addon.db.profile.UpgradeLevel.numChars
+			end,
+			set = function(info, value)
+				Addon.db.profile.UpgradeLevel.numChars = value
+			end,
+		},
 	},
 }
 

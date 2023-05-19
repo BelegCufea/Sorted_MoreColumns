@@ -5,6 +5,7 @@ local AddonDB_Defaults = {
   profile = {
     EquipmentSets = { showText = false, },
     TSM = { priceSource = "DBMarket", },
+    UpgradeLevel = { numChars = 3, }
   },
 }
 

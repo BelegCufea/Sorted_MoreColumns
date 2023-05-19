@@ -40,6 +40,8 @@
         "ReloadUI",
         "ERR_NOT_IN_COMBAT",
         "LE_PARTY_CATEGORY_HOME",
-        "LE_PARTY_CATEGORY_INSTANCE"
+        "LE_PARTY_CATEGORY_INSTANCE",
+        "CHAT_HEADER_SUFFIX",
+        "ITEM_UPGRADE_TOOLTIP_FORMAT"
     ]
 }
