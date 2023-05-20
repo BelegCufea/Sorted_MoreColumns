@@ -40,6 +40,9 @@ local options = {
 			name = "Upgrade level characters",
 			desc = "How many characters from upgrade tier is shown (e.g. for 3 it will return Vet from Veteran).",
 			width = "full",
+			min = 0,
+			max = 999,
+			step = 1,
 			get = function(info)
 				return Addon.db.profile.UpgradeLevel.numChars
 			end,

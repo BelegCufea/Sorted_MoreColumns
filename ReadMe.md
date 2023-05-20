@@ -5,6 +5,7 @@ Add more columns to [Sorted.](https://www.curseforge.com/wow/addons/sorted) addo
 ## Features
 
 * Total number of items - in bags, bank or equipped
+* Total number of items of every character - in bags, bank or equipped
 * Equipment Sets - show icon/name of equipment set item belongs to
 * TradeSkillMaster - shows auction prices from [TradeSkillMaster](https://www.curseforge.com/wow/addons/tradeskill-master)
 * Upgrade level - shows upgrade level of equipment

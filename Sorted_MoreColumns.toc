@@ -18,6 +18,7 @@ Libs\AceConfig-3.0\AceConfig-3.0.xml
 Core.lua
 Config.lua
 Plugins\EquipmentSets.lua
+Plugins\All.lua
 Plugins\Total.lua
 Plugins\TSM.lua
 Plugins\Upgrade.lua

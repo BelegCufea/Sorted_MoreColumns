@@ -1,17 +1,31 @@
 local Sorted = LibStub("Sorted.")
 
 local Sorted_Column = "MC_Total"
-local Sorted_Name = "Total"
-local Sorted_Sort = "All"
+local Sorted_Name = "Sum of every character"
+local Sorted_Sort = "Total"
 
 Sorted.Color.CYAN = CreateColor(0,1,1)
+local sortedData = Sorted_Data
 
 local private = {}
 
 private.OnUpate = function(data)
+    local totalCount = 0
     if data.link then
-        data.mc_totalCount = _G.GetItemCount(data.itemID, true, nil, true)
+
+        for _, player in pairs(sortedData) do
+            for _, container in pairs(player.containers) do
+                for _, slot in pairs(container) do
+                    if slot.itemID == data.itemID and slot.count then
+                        totalCount = totalCount + slot.count
+                    end
+                end
+            end
+        end
+        data.mc_totalCountChar = _G.GetItemCount(data.itemID, true, nil, true)
+        data.mc_totalCount = totalCount
     else
+        data.mc_totalCountChar = nil
         data.mc_totalCount = nil
     end
 end
@@ -25,15 +39,15 @@ end
 
 local UpdateElement = function(f, data)
     private.OnUpate(data)
-    if not data.mc_totalCount or data.mc_totalCount <= 1 then
+    if not data.mc_totalCount or not data.mc_totalCountChar or data.mc_totalCount <= 1 then
         f.totalString:SetText("")
     else
-        f.totalString:SetText("(" .. data.mc_totalCount .. ")")
+        f.totalString:SetText("[" .. data.mc_totalCount .. "]")
         if data.filtered then
             f.totalString:SetAlpha(0.5)
             f.totalString:SetTextColor(Sorted.Color.GREY:GetRGB())
         else
-            if data.mc_totalCount > data.combinedCount then
+            if data.mc_totalCount > data.mc_totalCountChar then
                 f.totalString:SetAlpha(0.8)
                 f.totalString:SetTextColor(Sorted.Color.CYAN:GetRGB())
             else
