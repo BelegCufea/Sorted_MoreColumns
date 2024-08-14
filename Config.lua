@@ -3,7 +3,7 @@ local Addon = select(2, ...)
 local Config = Addon:NewModule("Config")
 Addon.Config = Config
 
-local AddonTitle = "Sorted" .. GetAddOnMetadata(..., "Title")
+local AddonTitle = "Sorted" .. C_AddOns.GetAddOnMetadata(..., "Title")
 
 local options = {
 	name = AddonTitle,
