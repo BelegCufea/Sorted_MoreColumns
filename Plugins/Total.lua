@@ -6,6 +6,7 @@ local Sorted_Sort = "Total"
 
 Sorted.Color.CYAN = CreateColor(0,1,1)
 local sortedData = Sorted_Data
+local sortedAccountData = Sorted_AccountData
 
 local private = {}
 
@@ -22,7 +23,14 @@ private.OnUpate = function(data)
                 end
             end
         end
-        data.mc_totalCountChar = _G.GetItemCount(data.itemID, true, nil, true)
+        for _, container in pairs(sortedAccountData.containers) do
+            for _, slot in pairs(container) do
+                if slot.itemID == data.itemID and slot.count then
+                    totalCount = totalCount + slot.count
+                end
+            end
+        end
+        data.mc_totalCountChar = C_Item.GetItemCount(data.itemID, true, nil, true)
         data.mc_totalCount = totalCount
     else
         data.mc_totalCountChar = nil

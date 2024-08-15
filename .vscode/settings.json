@@ -223,7 +223,10 @@
         "GARRISON_REWARD_XP_FORMAT",
         "CurrencyContainerUtil",
         "FLAG_COUNT_TEMPLATE",
-        "COPPER_PER_GOLD"
+        "COPPER_PER_GOLD",
+        "GetText",
+        "GUILD",
+        "RENOWN_LEVEL_LABEL"
     ],
     "Lua.runtime.version": "Lua 5.1",
     "Lua.runtime.builtin": {
